@@ -256,6 +256,11 @@
     gap: 0.8rem;
   }
 
+  .focus-grid-bottom {
+    display: grid; grid-template-columns: repeat(2, 1fr);
+    gap: 0.8rem; margin-top: 0.8rem;
+  }
+
   .focus-card {
     position: relative; border-radius: 16px; overflow: hidden;
     border: 1px solid var(--border); cursor: default;
@@ -408,6 +413,7 @@
     section { padding: 4.5rem 1.5rem; }
     .what-grid { grid-template-columns: 1fr; gap: 3rem; }
     .focus-grid { grid-template-columns: 1fr; }
+    .focus-grid-bottom { grid-template-columns: 1fr; }
     .how-strip { grid-template-columns: 1fr; }
     .how-step { border-right: none; border-bottom: 1px solid var(--border); }
     .how-step:last-child { border-bottom: none; }
@@ -432,7 +438,7 @@
   </a>
   <ul class="nav-links">
     <li><a href="#what">What we do</a></li>
-    <li><a href="#focus">Focus areas</a></li>
+    <li><a href="#focus">What we're building</a></li>
     <li><a href="#how">How we work</a></li>
   </ul>
   <a href="https://x.com/charliesthings_" target="_blank" class="nav-cta">Get in touch</a>
@@ -503,29 +509,43 @@
   <div class="container">
     <div class="focus-header reveal">
       <div>
-        <div class="section-label">Focus Areas</div>
-        <h2 class="section-title">Where we go <span class="blue">deep</span>.</h2>
+        <div class="section-label">What We're Building</div>
+        <h2 class="section-title">Five <span class="blue">things</span> in motion.</h2>
       </div>
-      <p>We don't try to do everything. We focus where AI can create outsized leverage — and where craft still matters.</p>
+      <p>Products we're actively building — across AI agents, hardware, and enterprise platforms.</p>
     </div>
     <div class="focus-grid reveal">
       <div class="focus-card">
         <div class="focus-num">01</div>
-        <div class="focus-emoji">🧠</div>
-        <h3>AI Products</h3>
-        <p>End-to-end AI-native products — from LLM integration and retrieval pipelines to voice interfaces and autonomous agents.</p>
+        <div class="focus-emoji">📧</div>
+        <h3>Email Agent</h3>
+        <p>An AI-powered email agent that manages your inbox — drafting, triaging, and responding so you can focus on what matters.</p>
       </div>
       <div class="focus-card">
         <div class="focus-num">02</div>
-        <div class="focus-emoji">⚙️</div>
-        <h3>Hardware</h3>
-        <p>Physical product design, prototyping, and manufacturing — from wearables and IoT devices to embedded systems.</p>
+        <div class="focus-emoji">✈️</div>
+        <h3>AI Travel Agent</h3>
+        <p>An intelligent travel agent that plans, books, and optimises trips end-to-end — personalised to how you like to travel.</p>
       </div>
       <div class="focus-card">
         <div class="focus-num">03</div>
-        <div class="focus-emoji">🚀</div>
-        <h3>Software</h3>
-        <p>Web and mobile applications built for scale. Design systems, APIs, infrastructure — production-grade from day one.</p>
+        <div class="focus-emoji">🤝</div>
+        <h3>Senior Care Agent</h3>
+        <p>An AI companion and care assistant for seniors — helping with daily tasks, health monitoring, and staying connected with family.</p>
+      </div>
+    </div>
+    <div class="focus-grid-bottom reveal reveal-d1">
+      <div class="focus-card">
+        <div class="focus-num">04</div>
+        <div class="focus-emoji">⌚</div>
+        <h3>AI Wearable</h3>
+        <p>A wearable device designed for seamless, natural interaction with AI — bringing intelligent assistance to your wrist.</p>
+      </div>
+      <div class="focus-card">
+        <div class="focus-num">05</div>
+        <div class="focus-emoji">🎓</div>
+        <h3>Enterprise Learning Platform</h3>
+        <p>An AI-powered learning platform for enterprises — adaptive training, skill development, and knowledge management at scale.</p>
       </div>
     </div>
   </div>
