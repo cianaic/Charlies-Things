@@ -138,10 +138,15 @@
     filter: blur(40px);
   }
 
-  /* SVG Band */
-  .band-svg {
+  /* Product Photo */
+  .product-photo {
     position: relative;
     z-index: 2;
+    width: 100%;
+    max-width: 480px;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 24px;
     filter: drop-shadow(0 20px 60px rgba(0,0,0,0.15));
   }
 
@@ -398,134 +403,7 @@
 
     <div class="device-container">
       <div class="device-glow"></div>
-      <svg class="band-svg" width="380" height="520" viewBox="0 0 380 520" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <!-- Top strap -->
-        <path d="M140 0 L140 180 Q140 195 155 195 L225 195 Q240 195 240 180 L240 0" fill="#1a1816" stroke="#2a2725" stroke-width="1"/>
-        <!-- Strap texture lines -->
-        <line x1="155" y1="20" x2="225" y2="20" stroke="#222" stroke-width="0.5"/>
-        <line x1="155" y1="40" x2="225" y2="40" stroke="#222" stroke-width="0.5"/>
-        <line x1="155" y1="60" x2="225" y2="60" stroke="#222" stroke-width="0.5"/>
-        <line x1="155" y1="80" x2="225" y2="80" stroke="#222" stroke-width="0.5"/>
-        <line x1="155" y1="100" x2="225" y2="100" stroke="#222" stroke-width="0.5"/>
-        <line x1="155" y1="120" x2="225" y2="120" stroke="#222" stroke-width="0.5"/>
-        <line x1="155" y1="140" x2="225" y2="140" stroke="#222" stroke-width="0.5"/>
-        <line x1="155" y1="160" x2="225" y2="160" stroke="#222" stroke-width="0.5"/>
-
-        <!-- Main sensor body -->
-        <rect x="115" y="195" width="150" height="130" rx="16" fill="#1e1c1a" stroke="#3a3530" stroke-width="1.5"/>
-        
-        <!-- Inner sensor housing -->
-        <rect x="125" y="205" width="130" height="110" rx="12" fill="#161412"/>
-        
-        <!-- Top sensor bar -->
-        <rect x="140" y="215" width="100" height="8" rx="4" fill="#0d0c0b" stroke="#2a2520" stroke-width="0.5"/>
-        <!-- PPG sensor dots -->
-        <circle cx="165" cy="219" r="2.5" fill="#3a7a3a" opacity="0.8"/>
-        <circle cx="180" cy="219" r="2.5" fill="#3a7a3a" opacity="0.6"/>
-        <circle cx="195" cy="219" r="2.5" fill="#3a7a3a" opacity="0.8"/>
-        <circle cx="210" cy="219" r="2" fill="#8a2020" opacity="0.7"/>
-
-        <!-- MEMS Microphone grilles -->
-        <g transform="translate(142, 235)">
-          <!-- Left mic -->
-          <rect width="32" height="32" rx="6" fill="#0d0c0b" stroke="#c4a882" stroke-width="0.5" opacity="0.6"/>
-          <!-- Mic holes pattern -->
-          <circle cx="8" cy="8" r="1" fill="#2a2520"/>
-          <circle cx="14" cy="8" r="1" fill="#2a2520"/>
-          <circle cx="20" cy="8" r="1" fill="#2a2520"/>
-          <circle cx="26" cy="8" r="1" fill="#2a2520"/>
-          <circle cx="8" cy="14" r="1" fill="#2a2520"/>
-          <circle cx="14" cy="14" r="1" fill="#2a2520"/>
-          <circle cx="20" cy="14" r="1" fill="#2a2520"/>
-          <circle cx="26" cy="14" r="1" fill="#2a2520"/>
-          <circle cx="8" cy="20" r="1" fill="#2a2520"/>
-          <circle cx="14" cy="20" r="1" fill="#2a2520"/>
-          <circle cx="20" cy="20" r="1" fill="#2a2520"/>
-          <circle cx="26" cy="20" r="1" fill="#2a2520"/>
-          <circle cx="8" cy="26" r="1" fill="#2a2520"/>
-          <circle cx="14" cy="26" r="1" fill="#2a2520"/>
-          <circle cx="20" cy="26" r="1" fill="#2a2520"/>
-          <circle cx="26" cy="26" r="1" fill="#2a2520"/>
-          <!-- Mic label -->
-          <text x="16" y="-4" text-anchor="middle" fill="#c4a882" font-size="6" font-family="DM Sans" opacity="0.5">MIC</text>
-        </g>
-
-        <g transform="translate(206, 235)">
-          <!-- Right mic -->
-          <rect width="32" height="32" rx="6" fill="#0d0c0b" stroke="#c4a882" stroke-width="0.5" opacity="0.6"/>
-          <circle cx="8" cy="8" r="1" fill="#2a2520"/>
-          <circle cx="14" cy="8" r="1" fill="#2a2520"/>
-          <circle cx="20" cy="8" r="1" fill="#2a2520"/>
-          <circle cx="26" cy="8" r="1" fill="#2a2520"/>
-          <circle cx="8" cy="14" r="1" fill="#2a2520"/>
-          <circle cx="14" cy="14" r="1" fill="#2a2520"/>
-          <circle cx="20" cy="14" r="1" fill="#2a2520"/>
-          <circle cx="26" cy="14" r="1" fill="#2a2520"/>
-          <circle cx="8" cy="20" r="1" fill="#2a2520"/>
-          <circle cx="14" cy="20" r="1" fill="#2a2520"/>
-          <circle cx="20" cy="20" r="1" fill="#2a2520"/>
-          <circle cx="26" cy="20" r="1" fill="#2a2520"/>
-          <circle cx="8" cy="26" r="1" fill="#2a2520"/>
-          <circle cx="14" cy="26" r="1" fill="#2a2520"/>
-          <circle cx="20" cy="26" r="1" fill="#2a2520"/>
-          <circle cx="26" cy="26" r="1" fill="#2a2520"/>
-          <text x="16" y="-4" text-anchor="middle" fill="#c4a882" font-size="6" font-family="DM Sans" opacity="0.5">MIC</text>
-        </g>
-
-        <!-- Center status indicator -->
-        <g transform="translate(182, 251)">
-          <circle r="5" fill="#c4a882" opacity="0.15" class="mic-pulse"/>
-          <circle r="9" fill="none" stroke="#c4a882" stroke-width="0.3" opacity="0.3" class="mic-pulse"/>
-          <circle r="13" fill="none" stroke="#c4a882" stroke-width="0.2" opacity="0.15" class="mic-pulse"/>
-          <circle r="2.5" fill="#c4a882" opacity="0.9"/>
-        </g>
-
-        <!-- Bottom sensor bar -->
-        <rect x="140" y="278" width="100" height="6" rx="3" fill="#0d0c0b" stroke="#2a2520" stroke-width="0.5"/>
-        
-        <!-- Haptic button (side) -->
-        <rect x="265" y="240" width="4" height="30" rx="2" fill="#2a2725" stroke="#3a3530" stroke-width="0.5"/>
-
-        <!-- Brand text on body -->
-        <text x="190" y="300" text-anchor="middle" fill="#c4a882" font-size="7" font-family="DM Sans" letter-spacing="3" opacity="0.4">CONTEXT & HEALTH</text>
-
-        <!-- Bottom strap -->
-        <path d="M140 325 L140 520 Q140 520 155 520 L225 520 Q240 520 240 520 L240 325 Q240 310 225 310 L155 310 Q140 310 140 325" fill="#1a1816" stroke="#2a2725" stroke-width="1"/>
-        <!-- Strap texture lines -->
-        <line x1="155" y1="340" x2="225" y2="340" stroke="#222" stroke-width="0.5"/>
-        <line x1="155" y1="360" x2="225" y2="360" stroke="#222" stroke-width="0.5"/>
-        <line x1="155" y1="380" x2="225" y2="380" stroke="#222" stroke-width="0.5"/>
-        <line x1="155" y1="400" x2="225" y2="400" stroke="#222" stroke-width="0.5"/>
-        <line x1="155" y1="420" x2="225" y2="420" stroke="#222" stroke-width="0.5"/>
-        <line x1="155" y1="440" x2="225" y2="440" stroke="#222" stroke-width="0.5"/>
-        <line x1="155" y1="460" x2="225" y2="460" stroke="#222" stroke-width="0.5"/>
-        <line x1="155" y1="480" x2="225" y2="480" stroke="#222" stroke-width="0.5"/>
-        <line x1="155" y1="500" x2="225" y2="500" stroke="#222" stroke-width="0.5"/>
-
-        <!-- Clasp -->
-        <rect x="148" y="170" width="84" height="8" rx="2" fill="#2a2725" stroke="#3a3530" stroke-width="0.5"/>
-
-        <!-- Callout lines -->
-        <!-- Mic callout -->
-        <line x1="142" y1="251" x2="60" y2="230" stroke="#c4a882" stroke-width="0.5" opacity="0.4" stroke-dasharray="2 2"/>
-        <text x="55" y="226" text-anchor="end" fill="#c4a882" font-size="9" font-family="DM Sans" font-weight="300" opacity="0.7">Dual MEMS</text>
-        <text x="55" y="238" text-anchor="end" fill="#c4a882" font-size="9" font-family="DM Sans" font-weight="300" opacity="0.7">Microphones</text>
-
-        <!-- Sensor callout -->
-        <line x1="240" y1="219" x2="320" y2="200" stroke="#c4a882" stroke-width="0.5" opacity="0.4" stroke-dasharray="2 2"/>
-        <text x="325" y="196" fill="#c4a882" font-size="9" font-family="DM Sans" font-weight="300" opacity="0.7">PPG + SpO₂</text>
-        <text x="325" y="208" fill="#c4a882" font-size="9" font-family="DM Sans" font-weight="300" opacity="0.7">Sensors</text>
-
-        <!-- Button callout -->
-        <line x1="269" y1="255" x2="325" y2="260" stroke="#c4a882" stroke-width="0.5" opacity="0.4" stroke-dasharray="2 2"/>
-        <text x="330" y="256" fill="#c4a882" font-size="9" font-family="DM Sans" font-weight="300" opacity="0.7">Haptic</text>
-        <text x="330" y="268" fill="#c4a882" font-size="9" font-family="DM Sans" font-weight="300" opacity="0.7">Button</text>
-
-        <!-- Status callout -->
-        <line x1="182" y1="265" x2="60" y2="285" stroke="#c4a882" stroke-width="0.5" opacity="0.4" stroke-dasharray="2 2"/>
-        <text x="55" y="281" text-anchor="end" fill="#c4a882" font-size="9" font-family="DM Sans" font-weight="300" opacity="0.7">Status LED</text>
-        <text x="55" y="293" text-anchor="end" fill="#c4a882" font-size="9" font-family="DM Sans" font-weight="300" opacity="0.7">Recording</text>
-      </svg>
+      <img src="assets/product-hero.jpg" alt="Context & Health wearable on wrist" class="product-photo">
     </div>
   </section>
 
