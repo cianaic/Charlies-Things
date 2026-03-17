@@ -1,0 +1,599 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Charlie's Things — Product Studio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700;800&family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400;1,500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+  :root {
+    --bg: #FFFFFF;
+    --surface: #F4F7FC;
+    --surface-2: #EBF0F9;
+    --blue: #2E7CF6;
+    --blue-bright: #4A9EF5;
+    --blue-deep: #1A5FCC;
+    --blue-glow: rgba(46, 124, 246, 0.1);
+    --blue-subtle: rgba(46, 124, 246, 0.04);
+    --text: #0F1729;
+    --text-dim: #536179;
+    --text-muted: #94A0B8;
+    --border: rgba(15, 23, 41, 0.06);
+    --border-hover: rgba(46, 124, 246, 0.2);
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Manrope', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  ::selection { background: var(--blue); color: white; }
+
+  /* ─── NAV ─── */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    padding: 1rem 3rem;
+    display: flex; justify-content: space-between; align-items: center;
+    backdrop-filter: blur(24px) saturate(1.3);
+    -webkit-backdrop-filter: blur(24px) saturate(1.3);
+    background: rgba(255, 255, 255, 0.85);
+    border-bottom: 1px solid var(--border);
+  }
+
+  .nav-brand {
+    display: flex; align-items: center; gap: 0.65rem;
+    text-decoration: none; color: var(--text);
+  }
+
+  .nav-brand span {
+    font-weight: 700; font-size: 0.95rem; letter-spacing: -0.02em;
+  }
+
+  .nav-links { display: flex; gap: 2.5rem; list-style: none; align-items: center; }
+  .nav-links a {
+    color: var(--text-dim); text-decoration: none; font-size: 0.82rem;
+    font-weight: 500; transition: color 0.3s;
+  }
+  .nav-links a:hover { color: var(--text); }
+
+  .nav-cta {
+    font-size: 0.8rem; font-weight: 600; color: white; text-decoration: none;
+    padding: 0.55rem 1.4rem; background: var(--blue); border-radius: 8px;
+    transition: all 0.3s;
+    box-shadow: 0 2px 12px rgba(46, 124, 246, 0.2);
+  }
+  .nav-cta:hover {
+    background: var(--blue-deep);
+    box-shadow: 0 4px 20px rgba(46, 124, 246, 0.3);
+    transform: translateY(-1px);
+  }
+
+  /* ─── HERO ─── */
+  .hero {
+    min-height: 100vh;
+    display: flex; flex-direction: column;
+    justify-content: center; align-items: center; text-align: center;
+    padding: 10rem 2rem 6rem;
+    position: relative; overflow: hidden;
+  }
+
+  .hero-glow {
+    position: absolute; width: 900px; height: 900px;
+    border-radius: 50%; pointer-events: none; filter: blur(150px);
+    background: radial-gradient(circle, rgba(46, 124, 246, 0.08) 0%, transparent 65%);
+    top: -20%; left: 50%; transform: translateX(-50%);
+    animation: breathe 12s ease-in-out infinite;
+  }
+
+  @keyframes breathe {
+    0%, 100% { opacity: 1; transform: translateX(-50%) scale(1); }
+    50% { opacity: 0.6; transform: translateX(-50%) scale(1.15); }
+  }
+
+  .hero-badge {
+    display: inline-flex; align-items: center; gap: 0.5rem;
+    font-size: 0.7rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase;
+    color: var(--blue); padding: 0.45rem 1.1rem;
+    border: 1px solid var(--border-hover); border-radius: 100px;
+    background: var(--blue-subtle); margin-bottom: 2rem;
+    opacity: 0; animation: fadeUp 0.8s 0.2s forwards;
+  }
+
+  .badge-dot {
+    width: 5px; height: 5px; background: var(--blue);
+    border-radius: 50%; animation: blink 2s infinite;
+  }
+
+  @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0.2; } }
+
+  .hero h1 {
+    font-family: 'Playfair Display', serif; font-weight: 500;
+    font-size: clamp(2.8rem, 6.5vw, 5.8rem); line-height: 1.05;
+    letter-spacing: -0.035em; max-width: 780px;
+    opacity: 0; animation: fadeUp 0.8s 0.35s forwards;
+  }
+
+  .hero h1 .blue { color: var(--blue); font-style: italic; }
+
+  .hero-sub {
+    font-size: 1.08rem; font-weight: 400; color: var(--text-dim);
+    max-width: 500px; line-height: 1.7; margin-top: 1.8rem;
+    opacity: 0; animation: fadeUp 0.8s 0.55s forwards;
+  }
+
+  .hero-actions {
+    display: flex; gap: 0.8rem; margin-top: 2.8rem;
+    opacity: 0; animation: fadeUp 0.8s 0.7s forwards;
+  }
+
+  .btn-primary {
+    display: inline-flex; align-items: center; gap: 0.5rem;
+    padding: 0.85rem 2rem; background: var(--blue); color: white;
+    text-decoration: none; font-size: 0.85rem; font-weight: 600; border-radius: 10px;
+    transition: all 0.35s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    box-shadow: 0 4px 20px rgba(46, 124, 246, 0.2);
+  }
+  .btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 32px rgba(46, 124, 246, 0.3);
+    background: var(--blue-deep);
+  }
+
+  .btn-ghost {
+    display: inline-flex; align-items: center; gap: 0.5rem;
+    padding: 0.85rem 2rem; border: 1px solid var(--border);
+    color: var(--text-dim); text-decoration: none; font-size: 0.85rem;
+    font-weight: 500; border-radius: 10px; transition: all 0.35s;
+  }
+  .btn-ghost:hover {
+    border-color: var(--border-hover); color: var(--blue);
+    background: var(--blue-subtle);
+  }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(22px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  /* ─── DIVIDER ─── */
+  .divider {
+    width: 100%; height: 1px;
+    background: linear-gradient(90deg, transparent, var(--border), transparent);
+  }
+
+  /* ─── SECTION COMMONS ─── */
+  section { padding: 6.5rem 3rem; }
+  .container { max-width: 1100px; margin: 0 auto; }
+
+  .section-label {
+    font-size: 0.65rem; font-weight: 700; letter-spacing: 0.16em;
+    text-transform: uppercase; color: var(--blue); margin-bottom: 1rem;
+    display: flex; align-items: center; gap: 0.5rem;
+  }
+  .section-label::before {
+    content: ''; width: 16px; height: 1.5px; background: var(--blue); border-radius: 1px;
+  }
+
+  .section-title {
+    font-family: 'Playfair Display', serif; font-weight: 500;
+    font-size: clamp(1.9rem, 3.5vw, 2.8rem); line-height: 1.15;
+    letter-spacing: -0.025em; max-width: 550px;
+  }
+  .section-title .blue { color: var(--blue); font-style: italic; }
+
+  /* ─── WHAT WE DO ─── */
+  .what-grid {
+    display: grid; grid-template-columns: 1fr 1.1fr;
+    gap: 5rem; align-items: start; margin-top: 0;
+  }
+
+  .what-text p {
+    font-size: 1rem; font-weight: 400; line-height: 1.8;
+    color: var(--text-dim); margin-top: 1.6rem;
+  }
+
+  .what-cards { display: flex; flex-direction: column; gap: 0.8rem; }
+
+  .what-card {
+    padding: 1.8rem 2rem; background: var(--surface);
+    border: 1px solid var(--border); border-radius: 14px;
+    transition: all 0.35s; cursor: default;
+    display: flex; gap: 1.2rem; align-items: flex-start;
+  }
+
+  .what-card:hover {
+    border-color: var(--border-hover);
+    box-shadow: 0 8px 30px rgba(46, 124, 246, 0.06);
+    transform: translateY(-2px);
+  }
+
+  .what-icon {
+    width: 42px; height: 42px; min-width: 42px; border-radius: 10px;
+    background: var(--blue-subtle); border: 1px solid var(--border-hover);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.1rem; transition: all 0.3s;
+  }
+
+  .what-card:hover .what-icon {
+    background: var(--blue); border-color: var(--blue);
+    box-shadow: 0 0 16px rgba(46, 124, 246, 0.2);
+    color: white;
+  }
+
+  .what-card h3 {
+    font-weight: 650; font-size: 0.95rem; margin-bottom: 0.3rem;
+    letter-spacing: -0.01em;
+  }
+
+  .what-card p {
+    font-size: 0.84rem; line-height: 1.55; color: var(--text-dim);
+    font-weight: 400;
+  }
+
+  /* ─── FOCUS AREAS (replaces work/projects) ─── */
+  .focus-section { background: var(--surface); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+
+  .focus-header {
+    display: flex; justify-content: space-between; align-items: flex-end;
+    margin-bottom: 3rem;
+  }
+  .focus-header p {
+    font-size: 0.92rem; color: var(--text-dim); max-width: 360px;
+    line-height: 1.6; text-align: right;
+  }
+
+  .focus-grid {
+    display: grid; grid-template-columns: repeat(3, 1fr);
+    gap: 0.8rem;
+  }
+
+  .focus-card {
+    position: relative; border-radius: 16px; overflow: hidden;
+    border: 1px solid var(--border); cursor: default;
+    padding: 2.5rem 2rem; background: var(--bg);
+    transition: all 0.4s; min-height: 240px;
+    display: flex; flex-direction: column; justify-content: flex-end;
+  }
+
+  .focus-card::before {
+    content: ''; position: absolute; top: 0; left: 0; right: 0;
+    height: 3px; background: var(--blue);
+    transform: scaleX(0); transform-origin: left;
+    transition: transform 0.4s;
+  }
+
+  .focus-card:hover::before { transform: scaleX(1); }
+
+  .focus-card:hover {
+    border-color: var(--border-hover);
+    box-shadow: 0 12px 40px rgba(46, 124, 246, 0.06);
+    transform: translateY(-3px);
+  }
+
+  .focus-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 4rem; color: var(--blue); opacity: 0.08;
+    line-height: 1; margin-bottom: 1.2rem;
+    position: absolute; top: 1.5rem; right: 1.5rem;
+  }
+
+  .focus-emoji {
+    font-size: 1.8rem; margin-bottom: 1rem;
+  }
+
+  .focus-card h3 {
+    font-weight: 700; font-size: 1.1rem; margin-bottom: 0.5rem;
+    letter-spacing: -0.01em;
+  }
+
+  .focus-card p {
+    font-size: 0.84rem; line-height: 1.6; color: var(--text-dim);
+  }
+
+  /* ─── HOW WE WORK ─── */
+  .how-strip {
+    display: grid; grid-template-columns: repeat(3, 1fr);
+    gap: 0; margin-top: 3.5rem;
+    border: 1px solid var(--border); border-radius: 16px; overflow: hidden;
+  }
+
+  .how-step {
+    padding: 2.5rem 2rem;
+    border-right: 1px solid var(--border);
+    position: relative; transition: background 0.3s;
+  }
+
+  .how-step:last-child { border-right: none; }
+  .how-step:hover { background: var(--surface); }
+
+  .how-num {
+    font-size: 0.62rem; font-weight: 700; letter-spacing: 0.12em;
+    color: var(--blue); margin-bottom: 1.2rem;
+    display: flex; align-items: center; gap: 0.5rem;
+  }
+
+  .how-num::after {
+    content: ''; flex: 1; height: 1px; background: var(--border);
+  }
+
+  .how-step h3 {
+    font-family: 'Playfair Display', serif; font-weight: 500;
+    font-size: 1.25rem; margin-bottom: 0.6rem; letter-spacing: -0.01em;
+  }
+
+  .how-step p {
+    font-size: 0.84rem; line-height: 1.6; color: var(--text-dim);
+  }
+
+  /* ─── CTA ─── */
+  .cta {
+    text-align: center; padding: 9rem 3rem; position: relative; overflow: hidden;
+  }
+
+  .cta-glow {
+    position: absolute; width: 700px; height: 700px; border-radius: 50%;
+    background: radial-gradient(circle, rgba(46, 124, 246, 0.05) 0%, transparent 65%);
+    top: 50%; left: 50%; transform: translate(-50%, -50%);
+    pointer-events: none;
+  }
+
+  .cta .section-label { justify-content: center; position: relative; z-index: 1; }
+  .cta .section-label::before { display: none; }
+
+  .cta .section-title {
+    max-width: 600px; margin: 0 auto;
+    font-size: clamp(2rem, 4vw, 3.2rem);
+    position: relative; z-index: 1;
+  }
+
+  .cta-sub {
+    font-size: 1rem; color: var(--text-dim); max-width: 400px;
+    margin: 1.3rem auto 0; line-height: 1.6;
+    position: relative; z-index: 1;
+  }
+
+  .cta-actions {
+    margin-top: 2.2rem; display: flex; justify-content: center;
+    gap: 0.8rem; position: relative; z-index: 1;
+  }
+
+  .cta-sub {
+    font-size: 1rem; color: var(--text-dim); max-width: 400px;
+    margin: 1.3rem auto 0; line-height: 1.6;
+    position: relative; z-index: 1;
+  }
+
+  /* ─── FOOTER ─── */
+  footer {
+    border-top: 1px solid var(--border); padding: 2rem 3rem;
+    display: flex; justify-content: space-between; align-items: center;
+  }
+
+  .footer-left {
+    display: flex; align-items: center; gap: 0.5rem;
+  }
+  .footer-name { font-weight: 600; font-size: 0.82rem; color: var(--text-muted); }
+
+  .footer-links { display: flex; gap: 2rem; list-style: none; }
+  .footer-links a {
+    color: var(--text-muted); text-decoration: none; font-size: 0.78rem;
+    font-weight: 500; transition: color 0.3s;
+  }
+  .footer-links a:hover { color: var(--text); }
+
+  .footer-copy { font-size: 0.7rem; color: var(--text-muted); }
+
+  /* ─── SCROLL REVEALS ─── */
+  .reveal {
+    opacity: 0; transform: translateY(30px);
+    transition: all 0.65s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  }
+  .reveal.visible { opacity: 1; transform: translateY(0); }
+  .reveal-d1 { transition-delay: 0.1s; }
+  .reveal-d2 { transition-delay: 0.2s; }
+
+  /* ─── RESPONSIVE ─── */
+  @media (max-width: 900px) {
+    nav { padding: 0.9rem 1.5rem; }
+    .nav-links { display: none; }
+    section { padding: 4.5rem 1.5rem; }
+    .what-grid { grid-template-columns: 1fr; gap: 3rem; }
+    .focus-grid { grid-template-columns: 1fr; }
+    .how-strip { grid-template-columns: 1fr; }
+    .how-step { border-right: none; border-bottom: 1px solid var(--border); }
+    .how-step:last-child { border-bottom: none; }
+    footer { flex-direction: column; gap: 1.2rem; text-align: center; }
+    .focus-header { flex-direction: column; align-items: flex-start; gap: 1rem; }
+    .focus-header p { text-align: left; }
+  }
+
+  @media (max-width: 600px) {
+    .hero-actions { flex-direction: column; width: 100%; align-items: center; }
+    .btn-primary, .btn-ghost { width: 100%; justify-content: center; }
+    .cta-actions { flex-direction: column; align-items: center; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="#" class="nav-brand">
+    <span>Charlies Things</span>
+  </a>
+  <ul class="nav-links">
+    <li><a href="#what">What we do</a></li>
+    <li><a href="#focus">Focus areas</a></li>
+    <li><a href="#how">How we work</a></li>
+  </ul>
+  <a href="https://x.com/charliesthings_" target="_blank" class="nav-cta">Get in touch</a>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-glow"></div>
+  <div class="hero-badge"><span class="badge-dot"></span> Product Studio</div>
+  <h1>We build <span class="blue">things</span><br>that matter</h1>
+  <p class="hero-sub">We build our own products and consult on others — from hardware to software, with a focus on innovative AI products.</p>
+  <div class="hero-actions">
+    <a href="https://x.com/charliesthings_" target="_blank" class="btn-primary">Follow on 𝕏 →</a>
+    <a href="#what" class="btn-ghost">What we do</a>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- WHAT WE DO -->
+<section id="what">
+  <div class="container">
+    <div class="what-grid">
+      <div class="reveal">
+        <div class="section-label">What We Do</div>
+        <h2 class="section-title">Build <span class="blue">&</span> consult,<br>end to end.</h2>
+        <p>We work across the full product stack. Some things we build for ourselves. Others we build alongside founders and teams who need a partner that can go deep — from strategy to shipping code.</p>
+        <p style="margin-top: 0.8rem;">Every project gets senior, hands-on attention. No layers. No handoffs.</p>
+      </div>
+      <div class="what-cards reveal reveal-d1">
+        <div class="what-card">
+          <div class="what-icon">⚡</div>
+          <div>
+            <h3>Our own products</h3>
+            <p>We conceive, design, build, and ship our own products — from initial insight to market. We think like founders because we are founders.</p>
+          </div>
+        </div>
+        <div class="what-card">
+          <div class="what-icon">◎</div>
+          <div>
+            <h3>Consulting & build</h3>
+            <p>We partner with teams to design and engineer products. Strategy, UX, code — whatever the gap, we fill it and ship alongside you.</p>
+          </div>
+        </div>
+        <div class="what-card">
+          <div class="what-icon">✳</div>
+          <div>
+            <h3>Hardware & software</h3>
+            <p>We work across the full spectrum — from physical product development and embedded systems to web platforms and mobile apps.</p>
+          </div>
+        </div>
+        <div class="what-card">
+          <div class="what-icon">◐</div>
+          <div>
+            <h3>AI-native products</h3>
+            <p>Our core focus. LLM workflows, voice interfaces, agentic systems, and intelligent features embedded into real products.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- FOCUS AREAS -->
+<section class="focus-section" id="focus">
+  <div class="container">
+    <div class="focus-header reveal">
+      <div>
+        <div class="section-label">Focus Areas</div>
+        <h2 class="section-title">Where we go <span class="blue">deep</span>.</h2>
+      </div>
+      <p>We don't try to do everything. We focus where AI can create outsized leverage — and where craft still matters.</p>
+    </div>
+    <div class="focus-grid reveal">
+      <div class="focus-card">
+        <div class="focus-num">01</div>
+        <div class="focus-emoji">🧠</div>
+        <h3>AI Products</h3>
+        <p>End-to-end AI-native products — from LLM integration and retrieval pipelines to voice interfaces and autonomous agents.</p>
+      </div>
+      <div class="focus-card">
+        <div class="focus-num">02</div>
+        <div class="focus-emoji">⚙️</div>
+        <h3>Hardware</h3>
+        <p>Physical product design, prototyping, and manufacturing — from wearables and IoT devices to embedded systems.</p>
+      </div>
+      <div class="focus-card">
+        <div class="focus-num">03</div>
+        <div class="focus-emoji">🚀</div>
+        <h3>Software</h3>
+        <p>Web and mobile applications built for scale. Design systems, APIs, infrastructure — production-grade from day one.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- HOW WE WORK -->
+<section id="how">
+  <div class="container">
+    <div class="reveal">
+      <div class="section-label">How We Work</div>
+      <h2 class="section-title">Fast, focused, <span class="blue">no</span> fluff.</h2>
+    </div>
+    <div class="how-strip reveal">
+      <div class="how-step">
+        <div class="how-num">01 — UNDERSTAND</div>
+        <h3>Immerse</h3>
+        <p>Rapid deep-dive into the problem, market, and constraints. We leave with shared clarity and a tight scope.</p>
+      </div>
+      <div class="how-step">
+        <div class="how-num">02 — BUILD</div>
+        <h3>Ship daily</h3>
+        <p>Parallel design and engineering. Daily working builds, continuous review. Momentum over meetings.</p>
+      </div>
+      <div class="how-step">
+        <div class="how-num">03 — LAUNCH</div>
+        <h3>Go live</h3>
+        <p>Launch-ready product with analytics, documentation, and a clean handoff your team can maintain.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- CTA -->
+<section class="cta">
+  <div class="cta-glow"></div>
+  <div class="reveal">
+    <div class="section-label">Let's Talk</div>
+    <h2 class="section-title">Got a <span class="blue">thing</span><br>worth building?</h2>
+    <p class="cta-sub">Whether you need a partner or want to explore working together — we'd love to hear what you're building.</p>
+    <div class="cta-actions">
+      <a href="mailto:hello@charliesthings.com" class="btn-primary">Start a conversation →</a>
+      <a href="https://x.com/charliesthings_" target="_blank" class="btn-ghost">Follow on 𝕏</a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-left">
+    <span class="footer-name">Charlies Things</span>
+  </div>
+  <ul class="footer-links">
+    <li><a href="https://x.com/charliesthings_" target="_blank">𝕏</a></li>
+    <li><a href="mailto:hello@charliesthings.com">Email</a></li>
+    <li><a href="#what">What we do</a></li>
+    <li><a href="#focus">Focus</a></li>
+  </ul>
+  <div class="footer-copy">© 2026 Charlie's Things</div>
+</footer>
+
+<script>
+  const reveals = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('visible'); });
+  }, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
+  reveals.forEach(el => observer.observe(el));
+</script>
+</body>
+</html>
